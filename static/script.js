@@ -1,16 +1,16 @@
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     const form = document.getElementById('roasting-form');
     const urlInput = document.getElementById('website');
     const responseDiv = document.getElementById('roast');
     const responseText = document.getElementById('the-actual-thing');
 
-    form.addEventListener('submit', function(e) {
+    form.addEventListener('submit', function (e) {
         e.preventDefault();
 
         const url = urlInput.value;
 
         // TODO: add api url
-        fetch('https://localhost:8080', {
+        fetch('/api', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
