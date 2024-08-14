@@ -30,7 +30,7 @@ def api_endpoint():
         messages=[
             {
                 "role": "user",
-                "content": f"I will provide the raw HTML of a developer portfolio site. Please roast the content (not the actual code) and make your response super funny. Don't criticize it, roast it, like put it on a grill until it is charred: f{html}",
+                "content": f"I will provide the raw HTML of a developer portfolio site. Please roast the content of the website (dont comment about the actual code) and make your response super funny. Don't criticize it or suggest improvements, roast it, like put it on a grill until it is charred. Don't list the specific issues with the site, just slam the entire webpage in general. Also please make the point-of-view as if you are the one actually viewing the webpage and roasting it: f{html}",
             }
         ],
     )
