@@ -20,7 +20,7 @@ button {
     font-size: xx-large;
     border-radius: 100px;
     margin: 25px;
-    background: linear-gradient(90deg, rgba(108,0,255,1) 0%, rgba(151,0,255,1) 100%);
+    background: linear-gradient(90deg, rgba(108, 0, 255, 1) 0%, rgba(151, 0, 255, 1) 100%);
     color: white;
 }
 
@@ -28,6 +28,18 @@ button {
     display: none;
 }
 
-h1 { font-size: xxx-large }
-h2 { font-size: xx-large }
-h3 { font-size: x-large }
+#progress {
+    display: none;
+}
+
+h1 {
+    font-size: xxx-large
+}
+
+h2 {
+    font-size: xx-large
+}
+
+h3 {
+    font-size: x-large
+}

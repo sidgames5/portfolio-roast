@@ -1,6 +1,7 @@
 from flask import Flask, request, send_from_directory, jsonify
 import requests
 import ollama
+import json
 
 app = Flask(__name__, static_url_path="")
 
@@ -24,7 +25,7 @@ def api_endpoint():
         html = res.text
     else:
         return "your portfolio so bad that i dont even know how to roast it"
-    result = ollama.chat(
+    jsonres = ollama.chat(
         model="gemma:2b",
         messages=[
             {
@@ -33,8 +34,7 @@ def api_endpoint():
             }
         ],
     )
-    # TODO: the result is just json it needs to be decoded
-    return result
+    return jsonres["message"]["content"]
 
 
 if __name__ == "__main__":
