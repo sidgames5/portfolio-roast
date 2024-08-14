@@ -2,9 +2,20 @@ from flask import Flask, request, send_from_directory, jsonify
 import requests
 import ollama
 import json
+from urllib.parse import urlparse
+import os
 
 app = Flask(__name__, static_url_path="")
-client = ollama.Client(host="http://10.0.1.152:11434")
+OLLAMA_HOST = os.environ.get("OLLAMA_HOST", "http://localhost:11434")
+client = ollama.Client(host=f"http://{OLLAMA_HOST}:11434")
+
+
+def is_valid_url(url):
+    try:
+        result = urlparse(url)
+        return all([result.scheme, result.netloc])
+    except ValueError:
+        return False
 
 
 @app.route("/<path:path>")
@@ -21,6 +32,8 @@ def serve_index():
 def api_endpoint():
     data = request.json
     html = ""
+    if not is_valid_url(data["url"]):
+        return
     res = requests.get(data["url"])
     if res.status_code == 200:
         html = res.text
