@@ -1,4 +1,5 @@
 const mastodon = document.querySelector(".mastodon-share");
+const twitter = document.querySelector(".twitter-share");
 
 function redirect(url) {
     content = `

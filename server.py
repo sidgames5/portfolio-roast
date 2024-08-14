@@ -4,6 +4,7 @@ import ollama
 import json
 
 app = Flask(__name__, static_url_path="")
+client = ollama.Client(host="http://10.0.1.152:11434")
 
 
 @app.route("/<path:path>")
@@ -25,7 +26,7 @@ def api_endpoint():
         html = res.text
     else:
         return "your portfolio so bad that i dont even know how to roast it"
-    jsonres = ollama.chat(
+    jsonres = client.chat(
         model="gemma:2b",
         messages=[
             {
