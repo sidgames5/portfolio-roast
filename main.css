@@ -1,0 +1,33 @@
+@font-face {
+    font-family: "Primavera Sans";
+    src: url("assets/primavera-sans.regular.ttf");
+}
+
+* {
+    text-align: center;
+    font-family: "Primavera Sans", Arial, Helvetica, sans-serif;
+}
+
+input {
+    padding: 10px;
+    font-size: xxx-large;
+    border-radius: 50px;
+    width: 50%;
+}
+
+button {
+    padding: 50px;
+    font-size: xx-large;
+    border-radius: 100px;
+    margin: 25px;
+    background: linear-gradient(90deg, rgba(108,0,255,1) 0%, rgba(151,0,255,1) 100%);
+    color: white;
+}
+
+#roast {
+    display: none;
+}
+
+h1 { font-size: xxx-large }
+h2 { font-size: xx-large }
+h3 { font-size: x-large }
