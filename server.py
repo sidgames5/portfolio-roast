@@ -25,7 +25,7 @@ from opentelemetry.instrumentation.flask import FlaskInstrumentor
 
 
 app = Flask(__name__, static_url_path="")
-OLLAMA_HOST = os.environ.get("OLLAMA_HOST", "http://localhost:11434")
+OLLAMA_HOST = os.environ.get("OLLAMA_HOST", "http://10.0.1.152:11434")
 client = ollama.Client(host=f"http://{OLLAMA_HOST}:11434")
 
 resource = Resource.create({"service.name": "portfolio-roast"})
