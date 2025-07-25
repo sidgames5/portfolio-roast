@@ -27,7 +27,7 @@ from opentelemetry.instrumentation.flask import FlaskInstrumentor
 app = Flask(__name__, static_url_path="")
 client = ollama.Client(host=f"http://10.0.1.152:11434")
 
-resource = Resource.create({"service.name": "portfolio-roast"})
+resource = Resource.create({"service.name": "com.thefossrant.portfolio-roast"})
 
 # -- Tracing setup --
 
@@ -77,16 +77,36 @@ def is_valid_url(url):
 
 @app.route("/<path:path>")
 def serve_static(path):
+    meter.create_counter(
+        name="http.server.static_requests",
+        unit="requests",
+        description="Static web requests"
+    ).add(1)
     return send_from_directory("static", path)
 
 
 @app.route("/")
 def serve_index():
+    meter.create_counter(
+        name="http.server.static_requests",
+        unit="requests",
+        description="Static web requests"
+    ).add(1)
     return send_from_directory("static", "index.html")
 
+ollama_error_counter = meter.create_counter(
+    name="ollama.errors",
+    unit="errors",
+    description="Number of Ollama API errors"
+)
 
 @app.route("/api", methods=["POST"])
 def api_endpoint():
+    meter.create_counter(
+        name="http.server.api_calls",
+        unit="requests",
+        description="API Calls"
+    ).add(1)
     data = request.json
     html = ""
     if not is_valid_url(data["url"]):
@@ -108,6 +128,7 @@ def api_endpoint():
         )
         return jsonres["message"]["content"]
     except Exception as e:
+        ollama_error_counter.add(1)
         logger.error(e, exc_info=True)
         return jsonify({"error": "Ollama failed to roast your portfolio."}), 500
 
